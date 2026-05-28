@@ -8,9 +8,10 @@ export default function SensorGauge({
   warning,
   danger,
 }) {
+  const range = max - min;
   const percentage = Math.max(
     0,
-    Math.min(((value - min) / (max - min)) * 100, 100),
+    Math.min(range > 0 ? ((value - min) / range) * 100 : 0, 100),
   );
 
   // Determine status color

@@ -8,22 +8,26 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-// Your Firebase config — replace with your actual values
+// Vite env values can override these local development defaults.
 const firebaseConfig = {
   apiKey:
     import.meta.env.VITE_FIREBASE_API_KEY ||
-    "x3lHqIesS5ZW5yDrTY4M9J5TLgocIOfhIri0rlyi",
+    "AIzaSyCqDoqa_rzy_ZnWaCWoyYl9Yp3Jb1EbO5w",
   authDomain:
-    import.meta.env.VITE_FIREBASE_AUTH_DOMAIN ||
-    "ai-careon-default-rtdb.firebaseapp.com",
+    import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "ai-careon.firebaseapp.com",
   databaseURL:
     import.meta.env.VITE_FIREBASE_DATABASE_URL ||
     "https://ai-careon-default-rtdb.firebaseio.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "ai-careon",
   storageBucket:
-    import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "ai-careon.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+    import.meta.env.VITE_FIREBASE_STORAGE_BUCKET ||
+    "ai-careon.firebasestorage.app",
+  messagingSenderId:
+    import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "258872716187",
+  appId:
+    import.meta.env.VITE_FIREBASE_APP_ID ||
+    "1:258872716187:web:4ff97c31e0ae18be3a0f3e",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-XGC37KGGRY",
 };
 
 const missingConfig = Object.entries(firebaseConfig)

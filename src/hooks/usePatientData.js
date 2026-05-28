@@ -11,7 +11,7 @@ export function usePatientData(patientId = "patient_001") {
     const latestRef = ref(database, `patients/${patientId}/latest`);
     const unsubLatest = onValue(latestRef, (snapshot) => {
       const data = snapshot.val();
-      if (data) setLatest(data);
+      setLatest(data || null);
       setLoading(false);
     });
 
@@ -26,6 +26,8 @@ export function usePatientData(patientId = "patient_001") {
         }));
         arr.sort((a, b) => a.time - b.time);
         setHistory(arr.slice(-100)); // Last 100 entries
+      } else {
+        setHistory([]);
       }
     });
 

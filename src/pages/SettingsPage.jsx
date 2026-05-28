@@ -21,6 +21,11 @@ export default function SettingsPage() {
 
   const [saved, setSaved] = useState(false);
 
+  const parseNumber = (value, fallback) => {
+    const nextValue = Number(value);
+    return Number.isFinite(nextValue) ? nextValue : fallback;
+  };
+
   useEffect(() => {
     // Load current settings from Firebase
     const loadSettings = async () => {
@@ -78,7 +83,10 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setSettings({
                     ...settings,
-                    pressure_threshold: parseInt(e.target.value),
+                    pressure_threshold: parseNumber(
+                      e.target.value,
+                      settings.pressure_threshold,
+                    ),
                   })
                 }
                 className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -95,7 +103,7 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setSettings({
                     ...settings,
-                    temp_high: parseFloat(e.target.value),
+                    temp_high: parseNumber(e.target.value, settings.temp_high),
                   })
                 }
                 className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -112,7 +120,7 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setSettings({
                     ...settings,
-                    spo2_low: parseFloat(e.target.value),
+                    spo2_low: parseNumber(e.target.value, settings.spo2_low),
                   })
                 }
                 className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -129,7 +137,10 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setSettings({
                     ...settings,
-                    humidity_high: parseFloat(e.target.value),
+                    humidity_high: parseNumber(
+                      e.target.value,
+                      settings.humidity_high,
+                    ),
                   })
                 }
                 className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
@@ -188,7 +199,10 @@ export default function SettingsPage() {
                   type="number"
                   value={profile.age}
                   onChange={(e) =>
-                    setProfile({ ...profile, age: parseInt(e.target.value) })
+                    setProfile({
+                      ...profile,
+                      age: parseNumber(e.target.value, profile.age),
+                    })
                   }
                   className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
                 />
@@ -201,7 +215,10 @@ export default function SettingsPage() {
                   type="number"
                   value={profile.weight}
                   onChange={(e) =>
-                    setProfile({ ...profile, weight: parseInt(e.target.value) })
+                    setProfile({
+                      ...profile,
+                      weight: parseNumber(e.target.value, profile.weight),
+                    })
                   }
                   className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
                 />

@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { database, ref, set } from "../services/firebase";
 
 export default function ControlPage() {
   const [bedRaised, setBedRaised] = useState(false);
   const [pumpActive, setPumpActive] = useState(false);
   const [loading, setLoading] = useState("");
+  const timers = useRef(new Set());
+
+  useEffect(() => {
+    const pendingTimers = timers.current;
+    return () => {
+      pendingTimers.forEach(clearTimeout);
+    };
+  }, []);
+
+  const delay = (callback, ms) => {
+    const timerId = setTimeout(() => {
+      timers.current.delete(timerId);
+      callback();
+    }, ms);
+    timers.current.add(timerId);
+  };
 
   const sendCommand = async (command, value) => {
     setLoading(command);
@@ -18,14 +34,14 @@ export default function ControlPage() {
       if (command === "raise_bed") setBedRaised(value);
       if (command === "trigger_pump") {
         setPumpActive(true);
-        setTimeout(() => setPumpActive(false), 10000);
+        delay(() => setPumpActive(false), 10000);
       }
 
       console.log(`Command sent: ${command} = ${value}`);
     } catch (err) {
       console.error("Command failed:", err);
     } finally {
-      setTimeout(() => setLoading(""), 500);
+      delay(() => setLoading(""), 500);
     }
   };
 
@@ -108,7 +124,7 @@ export default function ControlPage() {
                 sendCommand("emergency_stop", true);
                 setBedRaised(false);
                 setPumpActive(false);
-                setTimeout(() => sendCommand("emergency_stop", false), 2000);
+                delay(() => sendCommand("emergency_stop", false), 2000);
               }}
               className="w-full py-4 mt-6 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-lg transition-all active:scale-95"
             >

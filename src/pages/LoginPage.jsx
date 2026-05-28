@@ -30,6 +30,8 @@ export default function LoginPage() {
       setError(
         err.code === "auth/invalid-credential"
           ? "Invalid email or password"
+          : err.code === "auth/configuration-not-found"
+            ? "Firebase Authentication is not enabled for this project. Enable Email/Password sign-in in Firebase Console."
           : err.code === "auth/email-already-in-use"
             ? "Email already registered"
             : err.code === "auth/weak-password"
