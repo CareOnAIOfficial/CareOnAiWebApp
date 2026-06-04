@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set, get } from "firebase/database";
 import {
+  fetchSignInMethodsForEmail,
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
@@ -54,8 +55,9 @@ export {
   onValue,
   set,
   get,
+  fetchSignInMethodsForEmail,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
 };
