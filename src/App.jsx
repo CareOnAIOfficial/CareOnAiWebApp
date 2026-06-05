@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -22,10 +22,16 @@ function PageLoader() {
 }
 
 function AppLayout({ children }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen bg-slate-900">
-      <Navbar />
-      <main className="flex-1 overflow-auto">{children}</main>
+      <Navbar
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
+      />
+      <main className="flex-1 overflow-auto pt-16 md:pt-0">{children}</main>
     </div>
   );
 }
