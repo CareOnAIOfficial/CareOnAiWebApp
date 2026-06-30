@@ -11,24 +11,13 @@ import {
 
 // Vite env values can override these local development defaults.
 const firebaseConfig = {
-  apiKey:
-    import.meta.env.VITE_FIREBASE_API_KEY ||
-    "AIzaSyCqDoqa_rzy_ZnWaCWoyYl9Yp3Jb1EbO5w",
-  authDomain:
-    import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "ai-careon.firebaseapp.com",
-  databaseURL:
-    import.meta.env.VITE_FIREBASE_DATABASE_URL ||
-    "https://ai-careon-default-rtdb.firebaseio.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "ai-careon",
-  storageBucket:
-    import.meta.env.VITE_FIREBASE_STORAGE_BUCKET ||
-    "ai-careon.firebasestorage.app",
-  messagingSenderId:
-    import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "258872716187",
-  appId:
-    import.meta.env.VITE_FIREBASE_APP_ID ||
-    "1:258872716187:web:4ff97c31e0ae18be3a0f3e",
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-XGC37KGGRY",
+  apiKey: "AIzaSyDuMJRaDBOL7ythKB2eHWw0JifTwfTFqHc",
+  authDomain: "ai-careon-first-version.firebaseapp.com",
+  databaseURL: "https://ai-careon-first-version-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "ai-careon-first-version",
+  storageBucket: "ai-careon-first-version.firebasestorage.app",
+  messagingSenderId: "67700428108",
+  appId: "1:67700428108:web:53afa8c853d8a53a24d3e9"
 };
 
 const missingConfig = Object.entries(firebaseConfig)

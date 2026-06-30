@@ -7,6 +7,7 @@ export function usePatientData(patientId = "patient_001") {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("ATTEMPTING TO CONNECT TO FIREBASE..."); // <--- ADD THIS
     // Listen to latest data (real-time)
     const latestRef = ref(database, `patients/${patientId}/latest`);
     const unsubLatest = onValue(latestRef, (snapshot) => {
@@ -39,3 +40,4 @@ export function usePatientData(patientId = "patient_001") {
 
   return { latest, history, loading };
 }
+

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "ai-careon"
-  }
+    "default": "ai-careon-4af0c",
+    "AI_careon": "ai-careon-4af0c"
+  },
+  "targets": {},
+  "etags": {}
 }
